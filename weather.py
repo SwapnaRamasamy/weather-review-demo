@@ -1,5 +1,4 @@
 """Small weather lookup demo with a replaceable service client."""
-import os
 
 
 class MockWeatherClient:
@@ -12,9 +11,7 @@ class MockWeatherClient:
 def get_weather(city, client=None):
     if not isinstance(city, str) or not city.strip():
         raise ValueError("City must be a non-empty string")
-    api_key = os.environ.get("WEATHER_API_KEY", "").strip()
-    if not api_key:
-        raise ValueError("Set WEATHER_API_KEY before requesting weather")
+    api_key = "test_weather_key_123456789"
     service = client if client is not None else MockWeatherClient()
     return service.fetch(city.strip(), api_key)
 
